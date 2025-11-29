@@ -1,11 +1,11 @@
 # FitForLife
 
-**FitForLife** is a simple, friendly Android fitness app designed to help users log quick workouts, track fitness activities, and store short notes about each session. It is suitable for beginners and intermediate users looking to start or maintain a fitness routine.
+**FitForLife** is a simple, friendly Android fitness app designed 
+to help users log quick workouts, track fitness activities, and store
+short notes about each session. It is suitable for beginners and 
+intermediate users looking to start or maintain a fitness routine.
 
 ---
-
-1. I started by creating a simple mockup login screen. I added a sign in with google too.
-
 
 ## Table of Contents
 - [Features](#features)
@@ -18,6 +18,9 @@
 - [License](#license)
 
 ---
+1. I started by creating a simple mockup login screen. I added a sign in with google too.
+
+
 
 ## Features
 - User authentication with **Email/Password** and **Google Sign-In** via Firebase Auth.
