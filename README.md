@@ -20,6 +20,7 @@ intermediate users looking to start or maintain a fitness routine.
 ---
 1. I started by creating a simple mockup login screen. I added a sign in with google too.
 
+<img width="720" height="1600" alt="Login_Screen" src="https://github.com/user-attachments/assets/d638f3b9-f02f-490a-87e2-15debe5be050" />
 
 
 ## Features
