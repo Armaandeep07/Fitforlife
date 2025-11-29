@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "294679233526",
+    "project_id": "myfitforlifeapp",
+    "storage_bucket": "myfitforlifeapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294679233526:android:4cdaba08a606121827fdd7",
+        "android_client_info": {
+          "package_name": "com.example.fitforlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294679233526-b7gjfsh033n3jfgqap1g9c8i1a8g0b4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1neRpiAgV--6FnRKxLyBvnB7TN7Xqmms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294679233526-b7gjfsh033n3jfgqap1g9c8i1a8g0b4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
