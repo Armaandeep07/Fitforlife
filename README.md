@@ -43,6 +43,7 @@ intermediate users looking to start or maintain a fitness routine.
 ---
 -- I added launcher Icon
 
+<<<<<<< HEAD
 -- Added register screen
 
 -- integrated with firebase for data storage
@@ -60,6 +61,12 @@ intermediate users looking to start or maintain a fitness routine.
 -- You can also edit your session by clicking on it from the list
 
 -- Long pressing the session in the list deletes the session
+=======
+ ![WhatsApp Image 2025-11-30 at 11 16 50](https://github.com/user-attachments/assets/6f2f8767-9a87-4b07-bae5-93da8f40178c)
+
+ -- Added register screen
+![WhatsApp Image 2025-11-29 at 23 41 22 (1)](https://github.com/user-attachments/assets/3bcd1f2b-84b5-46be-b455-ee7c00a384e8)
+>>>>>>> 1deb2182190e1aae42a8bcb818f2b7e49bfcbfa3
 
 
 
