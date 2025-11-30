@@ -41,6 +41,11 @@ intermediate users looking to start or maintain a fitness routine.
 *Add screenshots here to visually showcase your app, e.g., login screen, session list, create session.*
 
 ---
+ -- I added launcher Icon
+
+ -- Added register screen
+
+
 
 ## Tech Stack
 - **Platform:** Android (Kotlin)
