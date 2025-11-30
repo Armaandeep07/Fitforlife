@@ -50,13 +50,16 @@ intermediate users looking to start or maintain a fitness routine.
 >>>>>>> 1deb2182190e1aae42a8bcb818f2b7e49bfcbfa3
 
 -- I added launcher Icon
+
  ![WhatsApp Image 2025-11-30 at 11 16 50](https://github.com/user-attachments/assets/6f2f8767-9a87-4b07-bae5-93da8f40178c)
 
 -- integrated with firebase for data storage
 <img width="918" height="322" alt="image" src="https://github.com/user-attachments/assets/76cdf0fa-f2b0-4fbb-a978-abd2e7cc8389" />
 
+
 -- created a session view screen with create session button
     and logout button
+    
 ![createsessionview](https://github.com/user-attachments/assets/9b880ba7-c4f1-4f30-b99b-4d6d3720bab8)
 
 -- Pressing create button takes you to create session screen
