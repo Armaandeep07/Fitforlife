@@ -79,6 +79,9 @@ intermediate users looking to start or maintain a fitness routine.
 -- Long pressing the session in the list deletes the session
 ![sessions](https://github.com/user-attachments/assets/0599ef89-a141-424e-adea-8d7cee2b0abf)
 
+-- Added a title on session list screen
+
+![Sessionviewtitle](https://github.com/user-attachments/assets/2d32c114-843d-41cc-94a4-2d4631a6e470)
 
 
 ## Tech Stack
