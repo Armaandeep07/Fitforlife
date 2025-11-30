@@ -41,9 +41,25 @@ intermediate users looking to start or maintain a fitness routine.
 *Add screenshots here to visually showcase your app, e.g., login screen, session list, create session.*
 
 ---
- -- I added launcher Icon
+-- I added launcher Icon
 
- -- Added register screen
+-- Added register screen
+
+-- integrated with firebase for data storage
+
+-- created a session view screen with create session button
+    and logout button
+
+-- Pressing create button takes you to create session screen
+    You create session by providing session title, selecting type of 
+    session from dropdown, enter duration and some notes about session
+
+-- You can also save the session. Doing so takes you back to the session
+    screen to view your session.
+
+-- You can also edit your session by clicking on it from the list
+
+-- Long pressing the session in the list deletes the session
 
 
 
