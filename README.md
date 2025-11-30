@@ -43,7 +43,10 @@ intermediate users looking to start or maintain a fitness routine.
 ---
  -- I added launcher Icon
 
+ ![WhatsApp Image 2025-11-30 at 11 16 50](https://github.com/user-attachments/assets/6f2f8767-9a87-4b07-bae5-93da8f40178c)
+
  -- Added register screen
+![WhatsApp Image 2025-11-29 at 23 41 22 (1)](https://github.com/user-attachments/assets/3bcd1f2b-84b5-46be-b455-ee7c00a384e8)
 
 
 
