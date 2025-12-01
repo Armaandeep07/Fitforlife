@@ -25,7 +25,7 @@ class CreateSessionActivity : AppCompatActivity() {
 
         setupTypeDropdown()
 
-        // Check if editing existing session
+        // Load session if editing
         sessionId = intent.getStringExtra("sessionId")
         sessionId?.let { loadSession(it) }
 
@@ -42,16 +42,17 @@ class CreateSessionActivity : AppCompatActivity() {
                     binding.etTitle.setText(it.title)
                     binding.etDuration.setText(it.duration.toString())
                     binding.etNotes.setText(it.notes)
-                    val spinnerIndex = (binding.spinnerType.adapter as ArrayAdapter<String>).getPosition(it.type)
+                    val spinnerIndex =
+                        (binding.spinnerType.adapter as ArrayAdapter<String>).getPosition(it.type)
                     binding.spinnerType.setSelection(spinnerIndex)
                 }
             }
     }
 
-
     private fun setupTypeDropdown() {
         val types = listOf("Cardio", "Strength", "Flexibility", "Mobility", "Other")
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, types)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerType.adapter = adapter
     }
@@ -59,9 +60,42 @@ class CreateSessionActivity : AppCompatActivity() {
     private fun saveSession() {
         val title = binding.etTitle.text.toString().trim()
         val type = binding.spinnerType.selectedItem.toString()
-        val duration = binding.etDuration.text.toString().trim().toIntOrNull() ?: 0
+        val durationStr = binding.etDuration.text.toString().trim()
         val notes = binding.etNotes.text.toString().trim()
         val uid = auth.currentUser?.uid ?: return
+
+        // -----------------------------
+        // VALIDATION RULES
+        // -----------------------------
+
+        // 1. Title must be at least 4 characters
+        if (title.length < 4) {
+            binding.etTitle.error = "Title must be at least 4 characters"
+            return
+        }
+
+        // 2. Duration must be a number and >= 1
+        if (durationStr.isEmpty()) {
+            binding.etDuration.error = "Enter duration in minutes"
+            return
+        }
+
+        val duration = durationStr.toIntOrNull()
+        if (duration == null || duration < 1) {
+            binding.etDuration.error = "Duration must be at least 1 minute"
+            return
+        }
+
+        // 3. Notes must be at least 4 words
+        val wordCount = notes.split(" ").filter { it.isNotEmpty() }.size
+        if (wordCount < 4) {
+            binding.etNotes.error = "Notes must contain at least 4 words"
+            return
+        }
+
+        // -----------------------------
+        // All good → save to Firestore
+        // -----------------------------
 
         val sessionData = hashMapOf(
             "title" to title,
@@ -74,25 +108,25 @@ class CreateSessionActivity : AppCompatActivity() {
 
         if (sessionId != null) {
             // Update existing session
-            db.collection("sessions").document(sessionId!!).update(sessionData as Map<String, Any>)
-                .addOnSuccessListener { finish() }
-                .addOnFailureListener { e ->
-                    Toast.makeText(
-                        this,
-                        "Error: ${e.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+            db.collection("sessions").document(sessionId!!)
+                .update(sessionData as Map<String, Any>)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Session updated successfully", Toast.LENGTH_SHORT).show()
+                    finish()
                 }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+
         } else {
             // Create new session
             db.collection("sessions").add(sessionData)
-                .addOnSuccessListener { finish() }
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Session created successfully", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
                 .addOnFailureListener { e ->
-                    Toast.makeText(
-                        this,
-                        "Error: ${e.message}",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
     }
