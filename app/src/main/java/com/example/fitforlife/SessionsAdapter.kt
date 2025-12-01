@@ -10,15 +10,14 @@ import java.util.*
 class SessionsAdapter(
     private val sessions: List<WorkoutSession>,
     private val onEdit: (WorkoutSession) -> Unit,
-    private val onDelete: (WorkoutSession) -> Unit) :
-    RecyclerView.Adapter<SessionsAdapter.SessionViewHolder>() {
+    private val onRequestDelete: (WorkoutSession) -> Unit
+) : RecyclerView.Adapter<SessionsAdapter.SessionViewHolder>() {
 
     inner class SessionViewHolder(val binding: ItemSessionBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SessionViewHolder {
-        val binding =
-            ItemSessionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemSessionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SessionViewHolder(binding)
     }
 
@@ -35,16 +34,16 @@ class SessionsAdapter(
         } ?: ""
         holder.binding.tvDate.text = dateStr
 
-        // Long press to delete
+        // Long press → request delete
         holder.binding.root.setOnLongClickListener {
-            onDelete(session)
+            onRequestDelete(session)
             true
         }
-        // Click to edit
+
+        // Single tap → edit
         holder.binding.root.setOnClickListener {
             onEdit(session)
         }
-
     }
 
     override fun getItemCount(): Int = sessions.size

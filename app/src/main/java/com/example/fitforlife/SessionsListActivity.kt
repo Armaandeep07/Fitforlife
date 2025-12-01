@@ -1,5 +1,6 @@
 package com.example.fitforlife
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -43,22 +44,14 @@ class SessionsListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = SessionsAdapter(
-            sessionsList,
+            sessions = sessionsList,
             onEdit = { session ->
                 val intent = Intent(this, CreateSessionActivity::class.java)
                 intent.putExtra("sessionId", session.id)
                 startActivity(intent)
             },
-            onDelete = { session ->
-                db.collection("sessions")
-                    .document(session.id)
-                    .delete()
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Session deleted", Toast.LENGTH_SHORT).show()
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Error deleting session: ${e.message}", Toast.LENGTH_LONG).show()
-                    }
+            onRequestDelete = { session ->
+                showDeleteDialog(session)
             }
         )
 
@@ -78,6 +71,33 @@ class SessionsListActivity : AppCompatActivity() {
         }
     }
 
+    private fun showDeleteDialog(session: WorkoutSession) {
+        AlertDialog.Builder(this)
+            .setTitle("Delete Session")
+            .setMessage("Are you sure you want to delete this session?")
+            .setPositiveButton("Delete") { _, _ ->
+                deleteSession(session)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun deleteSession(session: WorkoutSession) {
+        db.collection("sessions")
+            .document(session.id)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Session deleted successfully", Toast.LENGTH_SHORT).show()
+
+                // Update instantly
+                sessionsList.remove(session)
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error deleting session: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+
     private fun loadSessions() {
         val uid = auth.currentUser?.uid ?: return
 
@@ -90,10 +110,7 @@ class SessionsListActivity : AppCompatActivity() {
 
                 binding.progressBar.visibility = View.GONE
 
-                if (error != null) {
-                    // Hide error completely
-                    return@addSnapshotListener
-                }
+                if (error != null) return@addSnapshotListener
 
                 sessionsList.clear()
 
